@@ -1,14 +1,13 @@
 from rest_framework import serializers
-from .models import TodoItem
+from .models import TodoItem, TodoList
 
-class TodoItemSerializer(serializers.HyperlinkedModelSerializer):
+class TodoItemSerializer(serializers.ModelSerializer):
   class Meta:
     model = TodoItem
-    fields = (
-      'id',
-      'title',
-      'description',
-      'start_date',
-      'end_date',
-      'color',
-    )
+    fields = '__all__'
+
+
+class TodoListSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = TodoList
+    fields = '__all__'
