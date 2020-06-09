@@ -3,17 +3,9 @@
     <v-toolbar dense dark color="primary">
     <img src="../assets/favicon.svg" width="40">
 
-      <v-toolbar-title>Lists</v-toolbar-title>
+      <v-toolbar-title class="title">Todo List</v-toolbar-title>
 
       <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon title="profile" >mdi-account</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon title="logout" >mdi-logout</v-icon>
-      </v-btn>
 
     </v-toolbar>
   </header>
@@ -38,6 +30,10 @@ export default {
   justify-content: space-evenly;
   align-items: center;
   height: 10vh;
+}
+
+.title{
+  margin-left: 2em;
 }
 
 .nav-links{

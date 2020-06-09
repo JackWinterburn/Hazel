@@ -1,9 +1,53 @@
 <template>
+<div class="wrapper">
+    <v-form
+      ref="form"
+      class="add-todo-form"
+    >
+      <v-text-field
+        :counter="40"
+        label="Title"
+        required
+        outlined
+        v-model="title"
+      ></v-text-field>
+
+      <v-text-field
+        label="Content"
+        required
+        outlined
+        v-model="content"
+      ></v-text-field>
+
+    <v-text-field
+      type="date" 
+      label="end date (required)"
+      v-model="end_date"
+      >
+     </v-text-field>
+     <v-text-field 
+      type="color" 
+      label="Color (click to open)"
+      mode="hexa"
+      v-model="color"
+      >
+        Pick a color
+     </v-text-field>
+
+      <v-btn @click.prevent="addTodo()" type="submit" color="primary">
+        Add Todo
+      </v-btn>
+
+  </v-form>
   <div class="container">
-    <swiper class="swiper" :options="swiperOption">
+
+
+
+    <swiper class="swiper" :options="swiperOption" >
       <swiper-slide
         :key="todo.id"
         v-for="todo in todos"
+        :style="{background: todo.color}"
       >
       <div class="todo-wrapper">
         <h1 class="todo-title">
@@ -15,7 +59,7 @@
 
         <div class="dates-wrapper">
           <h4>
-           Start date: {{ todo.start_date.substring(0, 10) }},
+           Start date: {{ todo.start_date.substring(0, 10) }}
           </h4>
           <h4>
             End date: {{ todo.end_date }}
@@ -54,6 +98,7 @@
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
   </div>
+</div>
 </template>
 
 <script>
@@ -79,6 +124,7 @@ components: {
 data(){
   return{
     todos: [],
+    dialog: false,
     swiperOption: {
       effect: 'coverflow',
       grabCursor: true,
@@ -90,11 +136,15 @@ data(){
         depth: 100,
         modifier: 1,
         slideShadows : true 
-    },
+      },
       pagination: {
       el: '.swiper-pagination'
-      }
+      },
     },
+    title: null,
+    content: null,
+    color: null,
+    end_date: null,
   }
 },
 
@@ -137,12 +187,38 @@ methods:{
       };
       await axios(req);
       this.getTodos();
-    }
+    },
+
+    async addTodo(){
+      let req = {
+        url: `http://localhost:8000/api/todos/`,
+        method: "POST",
+        data:{
+          title: this.title,
+          description:this.content,
+          end_date: this.end_date,
+          color: this.color,
+          completed: false
+        }
+      };
+      await axios(req);
+      this.getTodos();
+  }
   },
 }
 </script>
 
 <style lang="scss" scoped>
+.wrapper{
+  background: #eee;
+  text-align: center;
+}
+
+.add-todo-form{
+  margin-top: 3em;
+  width: 50%;
+  display: inline-block;
+}
 
 .buttons-wrapper{
   display: flex;
@@ -152,8 +228,8 @@ methods:{
 
 .container{
   border-radius: 5px;
-  padding-top: 3em;;
-  margin-top: 10em;
+  padding-top: 3em;
+  margin-top: 2em;
   height: 40vh;
   background: rgb(255, 255, 255);
   filter: drop-shadow(0 0 10px rgba(71, 71, 71, 0.349));
@@ -190,9 +266,6 @@ methods:{
       border-radius: 10px;
       transition-duration: 0.5s;
       transition: ease-in-out;
-    }
-    .swiper-slide:hover{
-      cursor: default;
     }
 
 </style>

@@ -9,7 +9,7 @@ class TodoItem(models.Model):
   id
   title = models.CharField(max_length=40, null=False)
   description = models.TextField(null=False)
-  color = models.CharField(max_length=7)
+  color = models.CharField(max_length=20)
   start_date = models.DateTimeField(auto_now_add=True, auto_now=False)
   end_date = models.CharField(max_length=10)
   completed=models.BooleanField(null=False)
