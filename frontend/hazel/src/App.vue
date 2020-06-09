@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <Navbar />
   <ListView />
    <Fetcher />
   </v-app>
@@ -8,13 +9,15 @@
 <script>
 import Fetcher from "./components/Fetcher.vue";
 import ListView from "./components/ListView.vue";
+import Navbar from "./components/Navbar.vue"
 
 export default {
   name: 'App',
 
   components: {
     Fetcher,
-    ListView
+    ListView,
+    Navbar
   },
 
   data: () => ({
@@ -22,3 +25,9 @@ export default {
   }),
 };
 </script>
+
+<style>
+  v-app{
+    background: #fafafa;
+  }
+</style>

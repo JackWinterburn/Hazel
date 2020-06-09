@@ -5,31 +5,31 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
+// import Vue from 'vue'
+// import axios from 'axios'
+// import VueAxios from 'vue-axios'
  
-Vue.use(VueAxios, axios)
+// Vue.use(VueAxios, axios)
 
 
-export default {
-  name: "Fetcher",
+// export default {
+//   name: "Fetcher",
 
 
-  created(){
-    this.getTodoLists();
-  },
+//   created(){
+//     this.getTodoLists();
+//   },
 
-  methods:{
-    async getTodoLists(){
-      let todoListsApiCall = await Vue.axios.get(
-        'http://localhost:8000/api/todolists/'
-      )
+//   methods:{
+//     async getTodoLists(){
+//       let todoListsApiCall = await Vue.axios.get(
+//         'http://localhost:8000/api/todolists/'
+//       )
     
-      console.log(todoListsApiCall)
-    }
-  }
-}
+//       console.log(todoListsApiCall)
+//     }
+//   }
+// }
 
 
 </script>
