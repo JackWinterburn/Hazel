@@ -1,3 +1,3 @@
 # Hazel
 simplistic todo app that uses swiperjs for a very unique user experiance
-![snapshot]('design/snapshot.png')
+![snapshot.png]('design/snapshot')
