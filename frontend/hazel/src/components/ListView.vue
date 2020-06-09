@@ -143,7 +143,7 @@ data(){
     },
     title: null,
     content: null,
-    color: null,
+    color: "#20aaee",
     end_date: null,
   }
 },
@@ -203,7 +203,12 @@ methods:{
       };
       await axios(req);
       this.getTodos();
-  }
+
+      this.title = ""
+      this.content = ""
+      this.end_date = ""
+      this.color = ""
+      }
   },
 }
 </script>
